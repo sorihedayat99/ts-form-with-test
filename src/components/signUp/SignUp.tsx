@@ -19,7 +19,7 @@ const SignUp = () => {
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        if (validator.isEmail(signUpData.email) && signUpData.password.length > 5 && signUpData.password === signUpData.confirmPassword){
+        if (validator.isEmail(signUpData.email) && signUpData.password.length >= 5 && signUpData.password === signUpData.confirmPassword){
             setError("")
             return;
         }
@@ -35,6 +35,7 @@ const SignUp = () => {
             setError("The passwords don't match. Try again.");
         }
     };
+    console.log(signUpData)
     return (
         <div className="container my-5">
             <form>
@@ -42,21 +43,22 @@ const SignUp = () => {
                     <label htmlFor='email' className='form-label'>
                         Email Address
                     </label>
-                    <input id='email' type='email' name='email' className='form-control'
+                    <input placeholder='email' id='email' type='email' name='email' className='form-control'
                            value={signUpData.email} onChange={handleChange}/>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor='password' className='form-label'>
-                        Email Address
+                    <label  htmlFor='password' className='form-label'>
+                       Password
                     </label>
-                    <input id='password' type='password' name='password' className='form-control'
+                    <input placeholder='password' id='password' type='password' name='password' className='form-control'
                            value={signUpData.password} onChange={handleChange}/>
                 </div>
                 <div className="mb-3">
                     <label htmlFor='confirmPassword' className='form-label'>
-                        Email Address
+                     Confirm Password
                     </label>
-                    <input id='confirmPassword' type='password' name='confirmPassword' className='form-control'
+                    <input placeholder='confirm password' id='confirmPassword' type='password' name='confirmPassword'
+                           className='form-control'
                            value={signUpData.confirmPassword} onChange={handleChange}/>
                 </div>
                 {error && <p className="text-danger">{error}</p>}
